@@ -17,7 +17,7 @@ const NewGarden: React.FC<NewGardenProps> = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#A4DE9F',
+    backgroundColor: '#588F68',
     padding: 10,
     borderRadius: 10,
     alignItems: 'center',

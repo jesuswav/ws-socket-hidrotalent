@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     height: 46,
     width: 46,
     borderRadius: 12,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#DADADA',
   },
   title: {
     fontSize: 18,

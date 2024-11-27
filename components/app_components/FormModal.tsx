@@ -1,5 +1,6 @@
 // FormModal.tsx
 import React, { useState } from 'react'
+import { Ionicons } from '@expo/vector-icons'
 import {
   View,
   Text,
@@ -7,6 +8,8 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native'
+import { ThemedView } from '../ThemedView'
+import { ThemedText } from '../ThemedText'
 
 interface FormModalProps {
   onClose: () => void
@@ -22,9 +25,23 @@ const FormModal: React.FC<FormModalProps> = ({ onClose, onSubmit }) => {
   }
 
   return (
-    <View style={styles.modalContainer}>
-      <View style={styles.modalContent}>
-        <Text style={styles.modalTitle}>Agrega un nuevo huerto</Text>
+    <ThemedView style={styles.modalContainer}>
+      <ThemedView style={styles.modalContent}>
+        <ThemedView style={{ paddingVertical: 12 }}>
+          {/* <Ionicons name='remove-outline' size={100} color='white' /> */}
+          <View
+            style={{
+              display: 'flex',
+              height: 5,
+              width: 62,
+              borderRadius: 16,
+              backgroundColor: 'gray',
+            }}
+          ></View>
+        </ThemedView>
+        <ThemedText style={styles.modalTitle}>
+          Agrega un nuevo huerto
+        </ThemedText>
 
         <TextInput
           style={styles.input}
@@ -41,14 +58,14 @@ const FormModal: React.FC<FormModalProps> = ({ onClose, onSubmit }) => {
         />
 
         <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-          <Text style={styles.submitButtonText}>Enviar</Text>
+          <ThemedText style={styles.submitButtonText}>Enviar</ThemedText>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-          <Text style={styles.closeButtonText}>Cerrar</Text>
+          <ThemedText style={styles.closeButtonText}>Cerrar</ThemedText>
         </TouchableOpacity>
-      </View>
-    </View>
+      </ThemedView>
+    </ThemedView>
   )
 }
 
@@ -61,10 +78,11 @@ const styles = StyleSheet.create({
   modalContent: {
     width: '100%',
     height: '90%',
-    backgroundColor: '#e8f5e9', // Verde claro
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-    padding: 20,
+    borderTopLeftRadius: 52,
+    borderTopRightRadius: 52,
+    paddingVertical: 14,
+    paddingHorizontal: 28,
+    // paddingTop: 52,
     alignItems: 'center',
     gap: 8,
   },

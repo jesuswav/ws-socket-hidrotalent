@@ -64,7 +64,7 @@ const GardenPage: React.FC<gardenPageProps> = ({
   })
 
   // Conectar al servidor WebSocket
-  const ws = new WebSocket('ws://172.20.10.11:3001')
+  const ws = new WebSocket('ws://192.168.0.112:3001')
 
   // Guardar la conexión WebSocket en el estado
   // setSocket(ws)
@@ -148,7 +148,7 @@ const GardenPage: React.FC<gardenPageProps> = ({
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#88D498', dark: '#88D498' }}
+      headerBackgroundColor={{ light: '#88D498', dark: '#588F68' }}
       headerComponent={
         <View style={styles.headerComponent}>
           <ThemedText style={styles.headerText}>Agua total gastada</ThemedText>
@@ -158,9 +158,7 @@ const GardenPage: React.FC<gardenPageProps> = ({
     >
       {/* Tittle of the page */}
       <ThemedView style={styles.titleContainer}>
-        <ThemedText style={{ color: '#575757' }} type='title'>
-          {itemTitle}
-        </ThemedText>
+        <ThemedText type='title'>{itemTitle}</ThemedText>
       </ThemedView>
       {/* page content */}
       {/* switch button */}
@@ -185,13 +183,13 @@ const GardenPage: React.FC<gardenPageProps> = ({
             time={startTime}
             setTime={setStartTime}
             title='Inicio'
-            color='rgba(164, 222, 159, 0.71)'
+            color='#6FAF79'
           />
           <TimePicker
             time={finishTime}
             setTime={setFinishTime}
             title='Final'
-            color='rgba(110, 192, 132, 0.56)'
+            color='#5D9F73'
           />
         </ThemedView>
         <TouchableOpacity
@@ -275,7 +273,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: 52,
     width: 68,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#EFEFEF',
     borderRadius: 18,
   },
   // time picker styles
@@ -289,7 +287,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 22,
     alignItems: 'center',
-    backgroundColor: '#4CA64C', // Color del botón primario
+    backgroundColor: '#82B584', // Color del botón primario
     paddingVertical: 22, // Espacio vertical
     paddingHorizontal: 20, // Espacio horizontal
     borderRadius: 30, // Bordes redondeados

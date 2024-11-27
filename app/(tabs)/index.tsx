@@ -21,9 +21,9 @@ import FormModal from '@/components/app_components/FormModal'
 export default function HomeScreen() {
   // simulación de datos desde la api
   const [gardens, setGarden] = useState([
-    { gardenName: 'Huerto Uno', color: '#88D498', valveId: 'valve1' },
-    { gardenName: 'Huerto Dos', color: '#A4DE9F', valveId: 'valve2' },
-    { gardenName: 'Huerto Dos', color: '#A4DE9F', valveId: 'valve3' },
+    { gardenName: 'Huerto Uno', color: '#5D9F73', valveId: 'valve1' },
+    { gardenName: 'Huerto Dos', color: '#6FAF79', valveId: 'valve2' },
+    { gardenName: 'Huerto Dos', color: '#82B584', valveId: 'valve3' },
   ])
 
   // control del modal
@@ -48,7 +48,7 @@ export default function HomeScreen() {
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: '#A1CEDC', dark: '#588F68' }}
       headerComponent={
         <View style={styles.headerComponent}>
           <ThemedText style={styles.headerText}>Agua total gastada</ThemedText>

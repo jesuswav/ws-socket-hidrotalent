@@ -33,7 +33,7 @@ const FormModal: React.FC<FormModalProps> = ({ onClose, onSubmit }) => {
             style={{
               display: 'flex',
               height: 5,
-              width: 62,
+              width: 72,
               borderRadius: 16,
               backgroundColor: 'gray',
             }}
@@ -56,6 +56,20 @@ const FormModal: React.FC<FormModalProps> = ({ onClose, onSubmit }) => {
           onChangeText={(text) => setFormData({ ...formData, email: text })}
           keyboardType='email-address'
         />
+
+        <ThemedView
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: 12,
+          }}
+        >
+          <ThemedView style={styles.line}></ThemedView>
+          <ThemedText style={{ marginTop: 6, color: 'gray' }}>
+            Registrar
+          </ThemedText>
+          <ThemedView style={styles.line}></ThemedView>
+        </ThemedView>
 
         <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
           <ThemedText style={styles.submitButtonText}>Enviar</ThemedText>
@@ -87,7 +101,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   modalTitle: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#2e7d32', // Verde oscuro
     marginBottom: 20,
@@ -103,10 +117,10 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     width: '100%',
-    height: 52,
-    backgroundColor: '#66bb6a', // Verde intermedio
+    height: 58,
+    backgroundColor: '#82B584', // Verde intermedio
     padding: 12,
-    borderRadius: 10,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,
@@ -118,16 +132,26 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     width: '100%',
-    backgroundColor: '#388e3c', // Verde oscuro
+    backgroundColor: '#5D9F73', // Verde oscuro
     padding: 10,
-    borderRadius: 10,
+    borderRadius: 22,
     alignItems: 'center',
-    height: 52,
+    height: 58,
     justifyContent: 'center',
   },
   closeButtonText: {
     color: 'white',
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  line: {
+    display: 'flex',
+    height: 2,
+    width: 92,
+    marginTop: 18,
+    marginBottom: 32,
+    borderRadius: 10,
+    backgroundColor: 'gray',
   },
 })
 

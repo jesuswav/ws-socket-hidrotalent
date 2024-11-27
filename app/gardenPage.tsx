@@ -64,7 +64,7 @@ const GardenPage: React.FC<gardenPageProps> = ({
   })
 
   // Conectar al servidor WebSocket
-  const ws = new WebSocket('ws://192.168.0.112:3001')
+  const ws = new WebSocket('ws://10.122.166.101:3001')
 
   // Guardar la conexión WebSocket en el estado
   // setSocket(ws)

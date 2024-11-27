@@ -1,11 +1,51 @@
-import { Image, StyleSheet, Platform, View } from 'react-native'
+import React, { useState } from 'react'
+import {
+  Image,
+  StyleSheet,
+  Platform,
+  View,
+  TouchableWithoutFeedback,
+  Modal,
+} from 'react-native'
 
 import { HelloWave } from '@/components/HelloWave'
 import ParallaxScrollView from '@/components/ParallaxScrollView'
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
 
+// local components
+import GardenItem from '@/components/app_components/GardenItem'
+import NewGarden from '@/components/app_components/NewGarden'
+import FormModal from '@/components/app_components/FormModal'
+
 export default function HomeScreen() {
+  // simulación de datos desde la api
+  const [gardens, setGarden] = useState([
+    { gardenName: 'Huerto Uno', color: '#88D498', valveId: 'valve1' },
+    { gardenName: 'Huerto Dos', color: '#A4DE9F', valveId: 'valve2' },
+    { gardenName: 'Huerto Dos', color: '#A4DE9F', valveId: 'valve3' },
+  ])
+
+  // control del modal
+  const [modalVisible, setModalVisible] = useState(false)
+
+  const handleOpenModal = () => {
+    setModalVisible(true)
+  }
+
+  const handleCloseModal = () => {
+    setModalVisible(false)
+  }
+
+  // Función para manejar el envío del formulario
+  const handleFormSubmit = (formData: { name: string; email: string }) => {
+    console.log(
+      'Formulario enviado',
+      `Nombre: ${formData.name}, Email: ${formData.email}`
+    )
+    // Aquí puedes manejar los datos del formulario como guardarlos o enviarlos a una API
+  }
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -17,48 +57,54 @@ export default function HomeScreen() {
       }
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type='title'>Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type='subtitle'>Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit{' '}
-          <ThemedText type='defaultSemiBold'>app/(tabs)/index.tsx</ThemedText>{' '}
-          to see changes. Press{' '}
-          <ThemedText type='defaultSemiBold'>
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
+        <ThemedText type='title'>
+          Mis Huertos
         </ThemedText>
+        <View>
+          <NewGarden title='New garden' onPress={handleOpenModal} />
+        </View>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type='subtitle'>Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this
-          starter app.
-        </ThemedText>
+
+      {/* Items de los huertos */}
+      <ThemedView style={{ gap: 16 }}>
+        {gardens.map((item, index) => (
+          <GardenItem
+            key={index}
+            gardenName={item.gardenName}
+            background={item.color}
+            valveId={item.valveId}
+          />
+        ))}
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type='subtitle'>Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type='defaultSemiBold'>npm run reset-project</ThemedText>{' '}
-          to get a fresh <ThemedText type='defaultSemiBold'>app</ThemedText>{' '}
-          directory. This will move the current{' '}
-          <ThemedText type='defaultSemiBold'>app</ThemedText> to{' '}
-          <ThemedText type='defaultSemiBold'>app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
+
+      {/* Modal */}
+      <Modal
+        animationType='slide'
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={handleCloseModal}
+      >
+        <TouchableWithoutFeedback onPress={handleCloseModal}>
+          <View style={styles.modalOverlay}>
+            <TouchableWithoutFeedback>
+              <FormModal
+                onClose={handleCloseModal}
+                onSubmit={handleFormSubmit}
+              />
+            </TouchableWithoutFeedback>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
     </ParallaxScrollView>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   headerComponent: {
     height: 210,
     justifyContent: 'center',
@@ -79,17 +125,60 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'space-between',
+    marginBottom: 16,
+    color: '#575757',
   },
   stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+    marginBottom: 16,
   },
   reactLogo: {
-    height: 178,
-    width: 290,
+    height: 400,
+    width: 240,
+    position: 'absolute',
+    top: -8,
     bottom: 0,
     left: 0,
-    position: 'absolute',
+    transform: [{ rotate: '70deg' }],
+  },
+  input: {
+    marginTop: 16,
+    height: 50, // Altura del input
+    borderColor: '#ccc', // Color del borde en modo claro
+    borderWidth: 1, // Borde más delgado
+    borderRadius: 30, // Bordes redondeados
+    paddingHorizontal: 15,
+    color: '#333', // Texto en color oscuro para mejor legibilidad
+    backgroundColor: '#fff', // Fondo blanco
+    fontSize: 16, // Tamaño de fuente
+  },
+  button: {
+    marginTop: 22,
+    alignItems: 'center',
+    backgroundColor: '#4CA64C', // Color del botón primario
+    paddingVertical: 15, // Espacio vertical
+    paddingHorizontal: 20, // Espacio horizontal
+    borderRadius: 30, // Bordes redondeados
+    elevation: 3, // Sombra para dar profundidad
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontSize: 18, // Tamaño de texto más grande
+    fontWeight: 'bold', // Texto en negrita
+  },
+  switchButton: {
+    // top: 18
+  },
+  timePickerContainer: {
+    top: 12,
+    marginBottom: 30,
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 12,
+  },
+  // modal styles
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'flex-end',
   },
 })

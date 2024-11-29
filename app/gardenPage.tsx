@@ -64,7 +64,7 @@ const GardenPage: React.FC<gardenPageProps> = ({
   })
 
   // Conectar al servidor WebSocket
-  const ws = new WebSocket('ws://10.122.166.101:3001')
+  const ws = new WebSocket('ws://172.20.10.11:3001')
 
   // Guardar la conexión WebSocket en el estado
   // setSocket(ws)
@@ -148,7 +148,7 @@ const GardenPage: React.FC<gardenPageProps> = ({
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#88D498', dark: '#588F68' }}
+      headerBackgroundColor={{ light: '#6EC084', dark: '#588F68' }}
       headerComponent={
         <View style={styles.headerComponent}>
           <ThemedText style={styles.headerText}>Agua total gastada</ThemedText>

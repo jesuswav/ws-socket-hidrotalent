@@ -48,7 +48,7 @@ export default function HomeScreen() {
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#588F68' }}
+      headerBackgroundColor={{ light: '#6EC084', dark: '#588F68' }}
       headerComponent={
         <View style={styles.headerComponent}>
           <ThemedText style={styles.headerText}>Agua total gastada</ThemedText>
